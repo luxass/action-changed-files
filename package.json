@@ -1,0 +1,40 @@
+{
+  "name": "file-watcher",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "bun@1.0.2",
+  "description": "A GitHub Action that watches a file(s) for changes.",
+  "author": {
+    "name": "Lucas Nørgård",
+    "email": "lucasnrgaard@gmail.com",
+    "url": "https://luxass.dev"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/luxass/file-watcher",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luxass/file-watcher"
+  },
+  "bugs": {
+    "url": "https://github.com/luxass/file-watcher/issues"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "esbuild --target=node16 --outdir=dist --bundle --platform=node --format=cjs src/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@luxass/eslint-config": "^3.3.2",
+    "@types/node": "^18.16.19",
+    "esbuild": "^0.19.3",
+    "eslint": "^8.49.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^5.1.1",
+    "@octokit/rest": "^20.0.1"
+  }
+}
