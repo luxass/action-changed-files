@@ -16,7 +16,8 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          - windows-latest
+          # windows support is experimental in bun
+          # - windows-latest
         bun-version:
           - latest
           - canary
