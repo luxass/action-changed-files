@@ -26,10 +26,10 @@ jobs:
           node-version: 16
 
       - name: Build
-        run: pnpm build
+        run: pnpm run build
 
       - name: Typecheck
-        run: pnpm typecheck
+        run: pnpm run typecheck
 
   lint:
     runs-on: ubuntu-latest
