@@ -1,8 +1,9 @@
-import { getBooleanInput, getInput, setFailed, info } from "@actions/core";
+import process from "node:process";
+import { getBooleanInput, getInput, info, setFailed } from "@actions/core";
 
 async function run() {
   const token = getInput("token", {
-    required: true
+    required: true,
   });
 
   const paths = getInput("paths", {
@@ -16,7 +17,6 @@ async function run() {
   if (debug) {
     info(`paths: ${paths}`);
   }
-
 }
 
 run().catch((err) => {
