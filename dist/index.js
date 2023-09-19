@@ -2225,6 +2225,7 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
 });
 
 // src/index.ts
+var import_node_process = __toESM(require("node:process"));
 var import_core = __toESM(require_core());
 async function run() {
   const token = (0, import_core.getInput)("token", {
@@ -2243,5 +2244,5 @@ async function run() {
 run().catch((err) => {
   console.error(err);
   (0, import_core.setFailed)(err);
-  process.exit(1);
+  import_node_process.default.exit(1);
 });
