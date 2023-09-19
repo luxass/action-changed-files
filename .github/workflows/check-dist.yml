@@ -1,8 +1,12 @@
 name: Check for uncommitted dist/ changes
 
 on:
-  # eslint-disable-next-line yml/no-empty-mapping-value
   workflow_dispatch:
+    inputs:
+      update:
+        description: Commit & Push the dist folder, if there was changes.
+        required: false
+        default: "true"
   push:
     paths-ignore:
       - "**.md"
@@ -32,8 +36,16 @@ jobs:
         run: |
           if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
             echo "Detected uncommitted changes after build.  See status below:"
-            git diff
-            exit 1
+            if [ "${{ inputs.update }}" ]; then
+              echo "Publishing dist/ directory."
+              git add dist
+              git commit -m "chore: updated dist directory"
+              git push
+            else
+              echo "Not publishing dist/ directory."
+              git diff
+              exit 1
+            fi
           fi
         id: diff
 
