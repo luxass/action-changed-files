@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./
+        id: watcher
+        with:
+          paths:
+            - src/**/*
+            - package.json
+          debug: true
+      
+      - name: Say Hello
+        if: steps.watcher.outputs.modified == 'true'
+        run: |
+            echo "Hello!"
+            echo "The following files were modified:"
+            echo "${{ steps.watcher.outputs.modified }}"
+            
+
+
