@@ -31,11 +31,11 @@
     "@octokit/rest": "^20.0.1"
   },
   "devDependencies": {
-    "@luxass/eslint-config": "^3.3.2",
+    "@luxass/eslint-config": "^3.4.0",
     "@types/node": "^18.16.19",
     "esbuild": "^0.19.3",
-    "eslint": "^8.49.0",
-    "eslint-plugin-import": "npm:eslint-plugin-i@2.28.0-2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "npm:eslint-plugin-i@2.29.1",
     "typescript": "^5.2.2"
   }
 }
