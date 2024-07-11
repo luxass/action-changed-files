@@ -34,7 +34,7 @@
     "@luxass/eslint-config": "^3.3.2",
     "@types/node": "^18.16.19",
     "esbuild": "^0.19.3",
-    "eslint": "^8.49.0",
+    "eslint": "^9.0.0",
     "eslint-plugin-import": "npm:eslint-plugin-i@2.28.0-2",
     "typescript": "^5.2.2"
   }
