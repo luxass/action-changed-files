@@ -1,7 +1,6 @@
-import process from "node:process";
 import { getBooleanInput, getInput, info, setFailed } from "@actions/core";
 
-async function run() {
+async function run(): Promise<void> {
   const token = getInput("token", {
     required: true,
   });
@@ -22,5 +21,4 @@ async function run() {
 run().catch((err) => {
   console.error(err);
   setFailed(err);
-  process.exit(1);
 });

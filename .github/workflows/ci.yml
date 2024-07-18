@@ -4,53 +4,43 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize]
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build:
-    name: Build - ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
     strategy:
-      fail-fast: true
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          # windows support is experimental in bun
-          # - windows-latest
-        bun-version:
-          - latest
-          - canary
-    steps:
-      - uses: actions/checkout@v4
+        node: [20, 18]
+      fail-fast: false
 
-      - uses: oven-sh/setup-bun@v1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.0.0
+
+      - name: Setup node
+        uses: actions/setup-node@v4.0.3
         with:
-          bun-version: ${{ matrix.bun-version }}
+          node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: bun install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: bun run build
-
-      - name: Typecheck
-        run: bun run typecheck
-
-  lint:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install
+        run: pnpm build
 
       - name: Lint
-        run: bun run lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck

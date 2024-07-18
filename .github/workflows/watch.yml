@@ -15,9 +15,7 @@ jobs:
       - uses: ./
         id: watcher
         with:
-          paths:
-            - src/**/*
-            - package.json
+          paths: "src/**/*, package.json"
           debug: true
       
       - name: Say Hello
