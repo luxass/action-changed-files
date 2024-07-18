@@ -1,24 +1,37 @@
-import { getBooleanInput, getInput, info, setFailed } from "@actions/core";
+import { resolve } from "node:path";
+import process from "node:process";
+import * as core from "@actions/core";
 
 async function run(): Promise<void> {
-  const token = getInput("token", {
+  const token = core.getInput("token", {
     required: true,
   });
 
-  const paths = getInput("paths", {
+  const cwd = core.getInput("cwd", {
+    required: false,
+  });
+
+  const paths = core.getInput("paths", {
     required: true,
   });
 
-  const debug = getBooleanInput("debug", {
+  const debug = core.getBooleanInput("debug", {
     required: false,
   });
 
   if (debug) {
-    info(`paths: ${paths}`);
+    core.info(`paths: ${paths}`);
   }
+
+  const workingDirectory = resolve(
+    process.env.GITHUB_WORKSPACE || process.cwd(),
+    cwd,
+  );
+
+  core.debug(`working directory: ${workingDirectory}`);
 }
 
 run().catch((err) => {
-  console.error(err);
-  setFailed(err);
+  core.error(err);
+  core.setFailed(err);
 });

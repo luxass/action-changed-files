@@ -14,6 +14,7 @@ inputs:
   cwd:
     description: Relative path under $GITHUB_WORKSPACE where the repository was checked out.
     required: false
+    default: .
   ref:
     description: |
       Git reference (e.g. branch name) from which the changes will be detected.

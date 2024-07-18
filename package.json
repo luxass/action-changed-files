@@ -1,23 +1,23 @@
 {
   "name": "file-watcher",
-  "type": "module",
   "version": "0.0.0",
-  "private": true,
-  "packageManager": "pnpm@9.5.0",
   "description": "A GitHub Action that watches a file(s) for changes.",
+  "type": "module",
+  "private": true,
   "author": {
     "name": "Lucas Nørgård",
     "email": "lucasnrgaard@gmail.com",
     "url": "https://luxass.dev"
   },
+  "packageManager": "pnpm@9.5.0",
   "license": "MIT",
-  "homepage": "https://github.com/luxass/file-watcher",
+  "homepage": "https://github.com/luxass/action-changed-files",
   "repository": {
     "type": "git",
-    "url": "https://github.com/luxass/file-watcher"
+    "url": "git+https://github.com/luxass/action-changed-files.git"
   },
   "bugs": {
-    "url": "https://github.com/luxass/file-watcher/issues"
+    "url": "https://github.com/luxass/action-changed-files/issues"
   },
   "main": "./dist/index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "@rspack/core": "^1.0.0-alpha.5",
     "@types/node": "^18.16.19",
     "eslint": "^9.7.0",
+    "eslint-plugin-format": "^0.1.2",
     "typescript": "^5.5.3"
   }
 }
