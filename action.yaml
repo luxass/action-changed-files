@@ -1,5 +1,5 @@
 name: File Changes
-description: An action that watches a file for changes
+description: An action that watches for file changes
 
 author: luxass
 branding:
